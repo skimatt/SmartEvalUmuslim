@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS (Untuk Slider) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- AOS CSS (Untuk Animasi Scroll Halus) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <style>
+        /* Definisi Warna Utama UMU */
+        .color-primary { color: #009879; }
+        .bg-primary { background-color: #009879; }
+        .bg-primary-dark { background-color: #0F8A5F; }
+        .bg-soft-gray { background-color: #F5F7F8; }
+        .hover\:bg-primary-dark:hover { background-color: #0F8A5F; }
+        .border-primary { border-color: #009879; }
+
+        body {
+            /* Font sudah di-override oleh base.html, ini hanya memastikan Poppins untuk heading */
+            color: #1e293b; 
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Swiper pagination dots (hijau) */
+        .swiper-pagination-bullet-active {
+            background: #009879 !important;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <!-- Lucide Icons CDN (Wajib diletakkan di body agar berfungsi) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 2. Hero Slider (Swiper.js) -->
+    <section id="home" class="relative overflow-hidden pt-20 pb-16 min-h-screen flex items-center">
+        <div class="swiper mySwiper absolute inset-0">
+            <div class="swiper-wrapper">
+                <!-- Slide 1: Fokus Pelaporan -->
+                <div class="swiper-slide relative">
+                    <!-- Placeholder Gambar Kampus -->
+                    <img src="https://maukuliah.ap-south-1.linodeobjects.com/gallery/131006/Gedung%205%20UMuslim-thumbnail.jpg
+" alt="Kampus UMU" class="absolute inset-0 w-full h-full object-cover grayscale opacity-10">
+                    
+                    <!-- Overlay Gradient Hijau -->
+                    <div class="absolute inset-0 bg-soft-gray/90"></div>
+                    
+                    <!-- Konten Hero -->
+                    <div class="relative max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6 lg:px-8">
+                        <div data-aos="fade-right" data-aos-duration="1000" class="py-16">
+                            <span class="text-lg font-semibold color-primary tracking-widest uppercase mb-3 block">Selamat Datang di UMU</span>
+                            <h1 class="text-6xl font-heading font-extrabold leading-tight mb-4 text-gray-900">
+                                SmartEval UMU —<br>
+                                Layanan Kampus Terintegrasi
+                            </h1>
+                            <p class="text-xl max-w-xl mb-8 text-gray-600">
+                                Layanan pelaporan fasilitas, penilaian dosen, bullying, dan peningkatan kualitas akademik Universitas Almuslim.
+                            </p>
+                            
+                            <!-- CTA Button (Sesuai Login State) -->
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('admin.dashboard' if current_user.role == 'admin' else 'mahasiswa.dashboard') }}" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-2xl transition duration-300 inline-flex items-center space-x-3 transform hover:scale-105">
+                                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                                    <span>Akses Dashboard</span>
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('main.request_account') }}" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-2xl transition duration-300 inline-flex items-center space-x-3 transform hover:scale-105">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                    <span>Mulai Buat Laporan</span>
+                                </a>
+                                <a href="{{ url_for('main.login') }}" class="ml-4 text-gray-600 hover:text-primary font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center space-x-3">
+                                    Login Admin/Mahasiswa
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination dots -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- 5. Section Statistik Mini (MENGGUNAKAN DATA DINAMIS) -->
+        <section class="py-12 bg-primary-dark text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Statistik 1: Total Laporan -->
+                    <div class="bg-black/20 p-6 rounded-2xl text-center shadow-2xl backdrop-blur-sm" data-aos="flip-left" data-aos-delay="100">
+                        <i data-lucide="bar-chart-3" class="w-10 h-10 mx-auto mb-3 text-white"></i>
+                        <p class="text-3xl font-heading font-extrabold">{{ total_laporan }}</p>
+                        <p class="text-sm opacity-80 mt-1">Total Laporan Masuk</p>
+                    </div>
+                    
+                    <!-- Statistik 2: Total Penilaian Dosen -->
+                    <div class="bg-black/20 p-6 rounded-2xl text-center shadow-2xl backdrop-blur-sm" data-aos="flip-left" data-aos-delay="200">
+                        <i data-lucide="star" class="w-10 h-10 mx-auto mb-3 text-white"></i>
+                        <p class="text-3xl font-heading font-extrabold">{{ total_evaluasi }}</p>
+                        <p class="text-sm opacity-80 mt-1">Total Penilaian Dosen</p>
+                    </div>
+
+                    <!-- Statistik 3: Kasus Diselesaikan (Placeholder) -->
+                    <div class="bg-black/20 p-6 rounded-2xl text-center shadow-2xl backdrop-blur-sm" data-aos="flip-left" data-aos-delay="300">
+                        <i data-lucide="check-circle" class="w-10 h-10 mx-auto mb-3 text-white"></i>
+                        <p class="text-3xl font-heading font-extrabold">95%</p>
+                        <p class="text-sm opacity-80 mt-1">Kasus Diselesaikan</p>
+                    </div>
+
+                    <!-- Statistik 4: Mahasiswa Terdaftar (Placeholder) -->
+                    <div class="bg-black/20 p-6 rounded-2xl text-center shadow-2xl backdrop-blur-sm" data-aos="flip-left" data-aos-delay="400">
+                        <i data-lucide="users-2" class="w-10 h-10 mx-auto mb-3 text-white"></i>
+                        <p class="text-3xl font-heading font-extrabold">12.5K+</p>
+                        <p class="text-sm opacity-80 mt-1">Civitas Akademika</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Section Layanan SmartEval -->
+        <section id="layanan" class="py-24 bg-soft-gray">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-heading font-extrabold text-gray-800 mb-3">Layanan Inti SmartEval</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Kami memfasilitasi komunikasi yang transparan dan aman antara civitas dan administrasi kampus.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Kartu 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="100">
+                        <i data-lucide="building" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Pelaporan Fasilitas</h3>
+                        <p class="text-gray-600">Laporkan kerusakan AC, kebersihan toilet, kondisi gedung, atau infrastruktur kampus lainnya agar segera diperbaiki.</p>
+                    </div>
+                    <!-- Kartu 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="200">
+                        <i data-lucide="shield-alert" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Kasus Bullying & Etika</h3>
+                        <p class="text-gray-600">Laporkan kasus intimidasi, pelecehan, atau pelanggaran etika akademik dengan jaminan kerahasiaan data pelapor.</p>
+                    </div>
+                    <!-- Kartu 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="300">
+                        <i data-lucide="user-x" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Pelanggaran Dosen</h3>
+                        <p class="text-gray-600">Berikan masukan atau laporkan dosen yang dianggap bermasalah dalam hal kedisiplinan, materi, atau penilaian.</p>
+                    </div>
+                    <!-- Kartu 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="400">
+                        <i data-lucide="book-open" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Penilaian Dosen</h3>
+                        <p class="text-gray-600">Berikan rating dan evaluasi objektif Anda terhadap cara mengajar dan materi perkuliahan dosen.</p>
+                    </div>
+                    <!-- Kartu 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="500">
+                        <i data-lucide="message-square" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Saran Akademik</h3>
+                        <p class="text-gray-600">Berikan ide dan saran konstruktif untuk kurikulum, jadwal kuliah, atau peningkatan mutu pendidikan di Prodi Anda.</p>
+                    </div>
+                    <!-- Kartu 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="600">
+                        <i data-lucide="briefcase" class="w-10 h-10 color-primary mb-4"></i>
+                        <h3 class="text-xl font-heading font-bold mb-2">Layanan Kemahasiswaan</h3>
+                        <p class="text-gray-600">Laporkan permasalahan terkait BEM, UKM, atau layanan administrasi kemahasiswaan lainnya.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Section Tentang SmartEval -->
+        <section id="tentang" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Kolom Kiri: Foto Kampus -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl" data-aos="fade-right">
+                        <img src="https://sia.umuslim.ac.id/frontpage/slider/3b9cf2510b6547b20ff341af479a2c4b.jpg" alt="Gedung Kampus UMU" class="w-full h-auto object-cover opacity-90">
+                        <div class="absolute inset-0 bg-primary/20"></div>
+                    </div>
+
+                    <!-- Kolom Kanan: Penjelasan -->
+                    <div data-aos="fade-left">
+                        <span class="text-lg font-semibold color-primary tracking-widest uppercase mb-3 block">Membangun Mutu Kampus</span>
+                        <h2 class="text-4xl font-heading font-extrabold text-gray-800 mb-6">Mengapa SmartEval Penting bagi Civitas UMU?</h2>
+                        <p class="text-gray-600 text-lg mb-8">
+                            SmartEval UMU adalah sistem pelaporan digital Universitas Almuslim yang bertujuan membangun lingkungan akademik yang lebih baik, aman, disiplin, dan transparan melalui partisipasi aktif seluruh civitas.
+                        </p>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-start text-gray-700">
+                                <i data-lucide="monitor-dot" class="w-6 h-6 text-primary-dark flex-shrink-0 mr-3 mt-1"></i>
+                                <span>Realtime Monitoring: Administrasi dapat meninjau dan menindaklanjuti laporan secara langsung.</span>
+                            </li>
+                            <li class="flex items-start text-gray-700">
+                                <i data-lucide="lock-keyhole" class="w-6 h-6 text-primary-dark flex-shrink-0 mr-3 mt-1"></i>
+                                <span>Data Aman dan Terstruktur: Semua data disimpan dalam database yang aman dan terpusat.</span>
+                            </li>
+                            <li class="flex items-start text-gray-700">
+                                <i data-lucide="eye" class="w-6 h-6 text-primary-dark flex-shrink-0 mr-3 mt-1"></i>
+                                <span>Transparansi Pelaporan: Mahasiswa dapat melihat status laporan mereka secara real-time.</span>
+                            </li>
+                            <li class="flex items-start text-gray-700">
+                                <i data-lucide="life-buoy" class="w-6 h-6 text-primary-dark flex-shrink-0 mr-3 mt-1"></i>
+                                <span>Dukungan Administrasi: Meringankan beban kerja admin dalam pengarsipan dan klasifikasi masalah.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+       
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // INISIALISASI AOS
+        AOS.init({
+            once: true,
+            duration: 800,
+        });
+
+        // INISIALISASI SWIPER
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            effect: "fade",
+            autoplay: {
+                delay: 7000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        
+        // Pastikan Lucide Icons di-render
+        lucide.createIcons();
+    </script>
+{% endblock content %}

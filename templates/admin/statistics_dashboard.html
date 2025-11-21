@@ -1,0 +1,96 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<div class="p-6 bg-white rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Dashboard Statistik & Evaluasi</h1>
+
+    <!-- Script Plotly CDN (Wajib) -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Baris Grafik -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        
+        <!-- Grafik 1: Trend Laporan -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Trend Laporan Masuk</h2>
+            {% if graph_trend %}
+                <div id="graph-trend" class="w-full h-96"></div>
+            {% else %}
+                <div class="text-center py-12 text-gray-500">Data laporan tidak tersedia.</div>
+            {% endif %}
+        </div>
+        
+        <!-- Grafik 2: Distribusi Kategori -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Laporan berdasarkan Kategori</h2>
+            {% if graph_category %}
+                <div id="graph-category" class="w-full h-96"></div>
+            {% else %}
+                <div class="text-center py-12 text-gray-500">Data kategori laporan tidak tersedia.</div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Baris Ranking Dosen -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        
+        <!-- Grafik 3: Ranking Dosen -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md border lg:col-span-1">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Ranking Dosen (Rata-rata Rating)</h2>
+            {% if graph_ranking %}
+                <div id="graph-ranking" class="w-full h-96"></div>
+            {% else %}
+                <div class="text-center py-12 text-gray-500">Data penilaian dosen tidak tersedia.</div>
+            {% endif %}
+        </div>
+
+        <!-- Tabel Ranking Dosen -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border lg:col-span-1">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Top 5 Dosen</h2>
+            {% if top_lecturers %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr class="bg-indigo-50">
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">#</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Nama Dosen</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Fakultas</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Avg. Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for lecturer in top_lecturers[:5] %}
+                        <tr>
+                            <td class="px-4 py-2 whitespace-nowrap text-sm font-bold text-indigo-600">{{ loop.index }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ lecturer.lecturer_name }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">{{ lecturer.fakultas }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap text-sm font-semibold text-green-600">{{ "%.2f" | format(lecturer.avg_rating) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-center text-gray-500 py-4">Belum ada data rating untuk diolah.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk merender grafik Plotly
+    function renderPlotlyGraph(graphJSON, containerId) {
+        if (graphJSON) {
+            const graph = JSON.parse(graphJSON);
+            Plotly.plot(containerId, graph.data, graph.layout);
+        }
+    }
+
+    // Panggil fungsi render setelah halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        renderPlotlyGraph('{{ graph_trend | safe }}', 'graph-trend');
+        renderPlotlyGraph('{{ graph_category | safe }}', 'graph-category');
+        renderPlotlyGraph('{{ graph_ranking | safe }}', 'graph-ranking');
+    });
+</script>
+{% endblock content %}

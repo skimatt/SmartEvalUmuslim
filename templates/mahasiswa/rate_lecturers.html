@@ -1,0 +1,80 @@
+{% extends "mahasiswa/base.html" %}
+{% block content %}
+<div class="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
+    <h1 class="text-3xl font-bold font-heading text-gray-800 mb-6 border-b pb-2 flex items-center">
+        <i data-lucide="star" class="w-7 h-7 mr-3 text-indigo-600"></i>
+        Penilaian Dosen Semester Ini
+    </h1>
+    <p class="text-gray-600 mb-6">Gunakan kolom pencarian di bawah untuk mencari dosen Anda. Anda hanya dapat menilai setiap dosen sekali.</p>
+
+    <!-- Kolom Pencarian Dosen -->
+    <div class="mb-8 p-4 bg-soft-gray rounded-xl border border-gray-200">
+        <input type="text" id="lecturerSearch" placeholder="Cari Nama Dosen atau NIDN..." 
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-inner focus:ring-primary focus:border-primary transition duration-150"
+               onkeyup="filterLecturers()">
+    </div>
+
+    <div id="lecturersList" class="space-y-4">
+        {% for lecturer in lecturers %}
+        {% set is_rated = lecturer.id in rated_lecturer_ids %}
+        
+        <div class="lecturer-card bg-white p-4 rounded-xl shadow-md border-2 
+            {% if is_rated %} border-green-400 {% else %} border-blue-100 hover:border-blue-300 {% endif %} flex justify-between items-center transition duration-200"
+            data-name="{{ lecturer.nama | lower }}" data-nidn="{{ lecturer.nidn }}">
+            
+            <div class="flex-grow">
+                <p class="text-lg font-bold text-gray-900">{{ lecturer.nama }}</p>
+                <p class="text-xs text-gray-500 mt-1">{{ lecturer.nidn }} | {{ lecturer.fakultas }}</p>
+            </div>
+            
+            <div class="flex-shrink-0">
+                {% if is_rated %}
+                    <span class="inline-flex items-center bg-green-600 text-white py-1.5 px-3 rounded-full shadow-lg font-bold text-sm">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i> Sudah Dinilai
+                    </span>
+                {% else %}
+                    <a href="{{ url_for('mahasiswa.submit_rating', lecturer_id=lecturer.id) }}" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-full shadow-md font-bold text-sm transition duration-150 transform hover:scale-105">
+                        Beri Nilai <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not lecturers %}
+    <div class="text-center py-10 border-4 border-dashed border-red-200 rounded-2xl bg-red-50">
+        <i data-lucide="alert-triangle" class="w-12 h-12 text-red-600 mx-auto mb-3"></i>
+        <p class="text-xl text-gray-700 font-semibold">Admin belum menambahkan data dosen.</p>
+        <p class="text-sm text-gray-500 mt-1">Silakan hubungi bagian Akademik kampus Anda.</p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    // Fungsi JavaScript untuk memfilter daftar dosen berdasarkan input pencarian
+    function filterLecturers() {
+        const input = document.getElementById('lecturerSearch');
+        const filter = input.value.toLowerCase();
+        const cards = document.getElementsByClassName('lecturer-card');
+
+        for (let i = 0; i < cards.length; i++) {
+            const name = cards[i].getAttribute('data-name');
+            const nidn = cards[i].getAttribute('data-nidn');
+
+            if (name.includes(filter) || nidn.includes(filter)) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+    
+    // Pastikan ikon Lucide di-render
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
+{% endblock content %}

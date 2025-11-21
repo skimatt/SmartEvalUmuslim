@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | SmartEval Mahasiswa</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Definisi Warna Utama UMU untuk global access */
+        .color-primary { color: #009879; }
+        .bg-primary { background-color: #009879; }
+        .bg-primary-dark { background-color: #0F8A5F; }
+        .bg-soft-gray { background-color: #F5F7F8; }
+        .hover\:bg-primary-dark:hover { background-color: #0F8A5F; }
+        .border-primary { border-color: #009879; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8fafc; /* Warna latar belakang sangat terang */
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Style untuk Flash Messages */
+        .alert-success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+        .alert-danger { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+        .alert-info { background-color: #cfe2ff; color: #055160; border-color: #b6d4fe; }
+    </style>
+    {% block head %}{% endblock head %}
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Lucide Icons CDN (Harus diletakkan di body agar berfungsi) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Navbar (menggunakan includes/_navbar.html yang sama) -->
+    {% include 'includes/_navbar.html' %} 
+
+    <main class="container mx-auto mt-8 p-4 flex-grow">
+        <!-- Flash Messages -->
+        <div class="max-w-4xl mx-auto w-full">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert-{{ category }} p-3 rounded-xl shadow mb-3 font-medium" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Konten Khusus Mahasiswa -->
+        <div class="max-w-4xl mx-auto">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    {% include 'includes/_footer.html' %} 
+    
+    <script>
+        // PENTING: Panggil fungsi render Lucide Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

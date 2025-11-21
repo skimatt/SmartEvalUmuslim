@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow-xl border-t-4 border-primary"
+     style="border-color: #009879;">
+
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+        
+        <!-- LOGO RESMI UMUSLIM  -->
+        <img src="{{ url_for('static', filename='assets/logo/Logo_Universitas_Almuslim.png') }}"
+             alt="Logo UMUSLIM"
+             class="w-14 h-14 mx-auto rounded-full object-cover shadow mb-3" />
+
+        <h1 class="text-2xl font-bold text-gray-800">Ajukan Akun Mahasiswa</h1>
+        <p class="text-xs text-gray-500 mt-1">Verifikasi Akun SmartEval UMU</p>
+    </div>
+
+    <!-- DESKRIPSI SINGKAT -->
+    <p class="text-center text-gray-600 mb-5 text-xs">
+        Isi formulir berikut dan lampirkan bukti KTM/KRS.  
+        Akun akan diverifikasi oleh Admin.
+    </p>
+
+    <!-- FORM -->
+    <form method="POST" action="{{ url_for('main.request_account') }}" 
+          class="space-y-3" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }}
+
+        <!-- NAMA -->
+        <div>
+            {{ form.nama_lengkap.label(class_="block text-xs font-medium text-gray-700") }}
+            {{ form.nama_lengkap(class_="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-primary focus:border-primary", placeholder="Nama lengkap sesuai KTM") }}
+            {% for error in form.nama_lengkap.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- NIM -->
+        <div>
+            {{ form.nim.label(class_="block text-xs font-medium text-gray-700") }}
+            {{ form.nim(class_="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-primary focus:border-primary", placeholder="Nomor Induk Mahasiswa") }}
+            {% for error in form.nim.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- PRODI -->
+        <div>
+            {{ form.prodi.label(class_="block text-xs font-medium text-gray-700") }}
+            {{ form.prodi(class_="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-primary focus:border-primary text-sm") }}
+            {% for error in form.prodi.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- EMAIL -->
+        <div>
+            {{ form.email.label(class_="block text-xs font-medium text-gray-700") }}
+            {{ form.email(class_="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-primary focus:border-primary", placeholder="Email aktif") }}
+            {% for error in form.email.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- HP -->
+        <div>
+            {{ form.hp.label(class_="block text-xs font-medium text-gray-700") }}
+            {{ form.hp(class_="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-primary focus:border-primary", placeholder="Nomor WhatsApp") }}
+            {% for error in form.hp.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- BUKTI UPLOAD -->
+        <div>
+            {{ form.bukti_upload.label(class_="block text-xs font-medium text-gray-700") }}
+            <p class="text-[11px] text-gray-500 mt-1 mb-1">Upload KTM atau KRS (format JPG/PNG).</p>
+            {{ form.bukti_upload(class_="block w-full text-xs text-gray-600 
+                file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 
+                file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 
+                hover:file:bg-green-100") }}
+            {% for error in form.bukti_upload.errors %}
+                <span class="text-red-500 text-xs">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="pt-2">
+            {{ form.submit(class_="
+                w-full flex justify-center py-2.5 px-4 
+                rounded-lg shadow text-sm font-bold text-white 
+                bg-primary hover:bg-primary-dark cursor-pointer transition", 
+                style="background-color: #009879;") }}
+        </div>
+
+    </form>
+
+    <!-- FOOTER -->
+    <div class="text-center mt-5">
+        <p class="text-xs text-gray-600">
+            Sudah punya akun?
+            <a href="{{ url_for('main.login') }}" class="font-medium"
+               style="color: #0F8A5F;">Login di Sini</a>
+        </p>
+    </div>
+
+</div>
+{% endblock content %}

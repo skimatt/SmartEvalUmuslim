@@ -1,0 +1,138 @@
+{% extends "admin/admin_base.html" %}
+{% block content %}
+<div class="p-6 bg-white rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Detail Laporan #{{ report.id }}</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Kolom Kiri: Detail Laporan -->
+        <div class="lg:col-span-2 space-y-6">
+            <div class="p-5 border border-gray-200 rounded-lg bg-gray-50">
+                <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                    <h2 class="text-xl font-semibold text-gray-800">{{ report.judul }}</h2>
+                    <span class="text-sm font-bold px-3 py-1 rounded-full 
+                        {% if report.status == 'Pending' %}bg-yellow-100 text-yellow-800{% elif report.status == 'Diproses' %}bg-blue-100 text-blue-800{% elif report.status == 'Selesai' %}bg-green-100 text-green-800{% elif report.status == 'Arsip' %}bg-gray-100 text-gray-800{% endif %}">
+                        {{ report.status }}
+                    </span>
+                </div>
+                
+                <p class="text-gray-600 mb-4 whitespace-pre-wrap">{{ report.deskripsi }}</p>
+
+                <div class="space-y-2 text-sm text-gray-700">
+                    <p><strong>Kategori:</strong> <span class="font-medium">{{ report.kategori }}</span></p>
+                    <p>
+                        <strong>Pelapor:</strong> 
+                        <span class="font-medium">{{ report.mahasiswa.nama_lengkap }} ({{ report.mahasiswa.nim }})</span> 
+                    </p>
+                    <p>
+                        <strong>Ditugaskan ke:</strong> 
+                        <span class="font-semibold text-indigo-600">{{ report.assigned_to_role | upper }}</span>
+                    </p>
+                    <p><strong>Tanggal Laporan:</strong> {{ report.created_at.strftime('%d %b %Y, %H:%M') }}</p>
+                    
+                    {% if report.bukti_url %}
+                    <p>
+                        <strong>Bukti Pendukung:</strong>
+                        <!-- SOLUSI FINAL: Tautan langsung ke URL yang disimpan di DB -->
+                        <a href="/{{ report.bukti_url }}" target="_blank" class="text-indigo-500 hover:text-indigo-700 hover:underline font-medium ml-2">
+                            Lihat Bukti <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Bagian Komentar/Balasan -->
+            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100">
+                <h3 class="xl font-semibold text-gray-800 mb-4 border-b pb-2">Riwayat Balasan</h3>
+
+                <div class="space-y-4">
+                    {% for comment in comments %}
+                    <div class="p-3 rounded-lg {% if comment.user_id == current_user.id %}bg-blue-50 border-blue-200 ml-8{% else %}bg-gray-100 border-gray-200 mr-8{% endif %} border">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-sm {% if comment.user_id == current_user.id %}text-blue-700{% else %}text-gray-700{% endif %}">
+                                {{ comment.user.nama_lengkap }} ({{ comment.user.role | upper }})
+                            </span>
+                            <span class="text-xs text-gray-500">{{ comment.created_at.strftime('%d %b %Y, %H:%M') }}</span>
+                        </div>
+                        <p class="text-gray-800 whitespace-pre-wrap text-sm">{{ comment.komentar }}</p>
+                    </div>
+                    {% endfor %}
+                    
+                    {% if not comments %}
+                    <p class="text-center text-gray-500 italic">Belum ada balasan untuk laporan ini.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Form Tambah Balasan -->
+                <h3 class="lg font-semibold text-gray-800 mt-6 mb-3 border-t pt-4">Tambah Balasan Admin/Handler</h3>
+                <form method="POST" action="{{ url_for('admin.add_comment', report_id=report.id) }}">
+                    {{ comment_form.hidden_tag() }}
+                    
+                    <div class="mb-4">
+                        {{ comment_form.komentar(class_="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500", rows=5, placeholder="Tulis balasan atau komentar Anda di sini...") }}
+                        {% for error in comment_form.komentar.errors %}
+                            <span class="text-red-500 text-xs mt-1 block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    {{ comment_form.submit(class_="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition duration-150 cursor-pointer shadow-md") }}
+                </form>
+            </div>
+        </div>
+
+        <!-- Kolom Kanan: Aksi Cepat -->
+        <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Aksi Cepat</h3>
+                
+                <p class="text-sm text-gray-600 mb-3 font-medium">Ubah Status Laporan:</p>
+                
+                <div class="space-y-2">
+                    <form method="POST" action="{{ url_for('admin.report_detail', report_id=report.id) }}" style="display:inline-block; width:100%;">
+                        <input type="hidden" name="status" value="Pending">
+                        <button type="submit" class="w-full py-2 px-4 rounded-md text-sm font-semibold transition duration-150 
+                            {% if report.status == 'Pending' %}bg-yellow-500 text-white shadow-lg{% else %}bg-yellow-100 text-yellow-800 hover:bg-yellow-200{% endif %}"
+                            {% if report.status == 'Pending' %}disabled{% endif %}>
+                            <i class="fas fa-hourglass-half mr-2"></i> Pending
+                        </button>
+                    </form>
+                    
+                    <form method="POST" action="{{ url_for('admin.report_detail', report_id=report.id) }}" style="display:inline-block; width:100%;">
+                        <input type="hidden" name="status" value="Diproses">
+                        <button type="submit" class="w-full py-2 px-4 rounded-md text-sm font-semibold transition duration-150 
+                            {% if report.status == 'Diproses' %}bg-blue-500 text-white shadow-lg{% else %}bg-blue-100 text-blue-800 hover:bg-blue-200{% endif %}"
+                            {% if report.status == 'Diproses' %}disabled{% endif %}>
+                            <i class="fas fa-cogs mr-2"></i> Diproses
+                        </button>
+                    </form>
+                    
+                    <form method="POST" action="{{ url_for('admin.report_detail', report_id=report.id) }}" style="display:inline-block; width:100%;">
+                        <input type="hidden" name="status" value="Selesai">
+                        <button type="submit" class="w-full py-2 px-4 rounded-md text-sm font-semibold transition duration-150 
+                            {% if report.status == 'Selesai' %}bg-green-500 text-white shadow-lg{% else %}bg-green-100 text-green-800 hover:bg-green-200{% endif %}"
+                            {% if report.status == 'Selesai' %}disabled{% endif %}>
+                            <i class="fas fa-check-circle mr-2"></i> Selesai
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{{ url_for('admin.report_detail', report_id=report.id) }}" style="display:inline-block; width:100%;" onsubmit="return confirm('Yakin ingin mengarsipkan laporan ini? Laporan ini akan hilang dari daftar aktif.');">
+                        <input type="hidden" name="status" value="Arsip">
+                        <button type="submit" class="w-full py-2 px-4 rounded-md text-sm font-semibold transition duration-150 mt-4 
+                            {% if report.status == 'Arsip' %}bg-gray-500 text-white shadow-lg{% else %}bg-gray-200 text-gray-800 hover:bg-gray-300{% endif %}"
+                            {% if report.status == 'Arsip' %}disabled{% endif %}>
+                            <i class="fas fa-archive mr-2"></i> Arsipkan Laporan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-6">
+        <a href="{{ url_for('admin.manage_reports') }}" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold transition duration-150">
+            <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Laporan
+        </a>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - SmartEval Umu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Definisi Warna Utama UMU untuk global access */
+        .color-primary { color: #009879; }
+        .bg-primary { background-color: #009879; }
+        .bg-primary-dark { background-color: #0F8A5F; }
+        .bg-soft-gray { background-color: #F5F7F8; }
+        .hover\:bg-primary-dark:hover { background-color: #0F8A5F; }
+        .border-primary { border-color: #009879; }
+
+        /* Konfigurasi Font Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Warna latar belakang terang untuk base */
+        }
+        /* Style untuk Flash Messages */
+        .alert-success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+        .alert-danger { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+        .alert-info { background-color: #cfe2ff; color: #055160; border-color: #b6d4fe; }
+    </style>
+    {% block head %}{% endblock head %}
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Navbar (Menggunakan Include Baru) -->
+    {% include 'includes/_navbar.html' %}
+
+    <!-- Flash Messages (Pesan Pop-up) -->
+    <div class="max-w-7xl mx-auto mt-4 w-full px-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert-{{ category }} p-3 rounded-lg shadow mb-3" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Konten Utama -->
+    <main class="container mx-auto mt-8 p-4 flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer (Menggunakan Include Baru) -->
+    {% include 'includes/_footer.html' %}
+</body>
+</html>

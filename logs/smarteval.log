@@ -1,0 +1,409 @@
+2025-11-21 05:52:06,994 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 05:53:20,135 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 05:53:20,364 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 05:53:25,480 ERROR: Exception on /admin/statistics [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 356, in statistics_dashboard
+    graph_trend = json.dumps(fig_trend, cls=plotly.utils.PlotlyJSONEncoder)
+NameError: name 'plotly' is not defined
+2025-11-21 05:54:24,785 INFO: LOGIN ATTEMPT: User 'rahmatzkk10@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 05:54:25,021 INFO: LOGIN SUCCESS: User '235520110156' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 05:56:35,585 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 05:56:35,812 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 05:56:43,690 ERROR: Exception on /admin/statistics [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 356, in statistics_dashboard
+    graph_trend = json.dumps(fig_trend, cls=plotly.utils.PlotlyJSONEncoder)
+NameError: name 'plotly' is not defined
+2025-11-21 05:58:48,397 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:09:38,221 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:10:20,067 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:11:04,033 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:12:58,817 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:14:38,679 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:16:00,367 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:19:56,969 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:22:44,205 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:23:00,997 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:25:47,181 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:26:50,232 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:28:33,856 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:31:08,162 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:33:33,610 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 06:36:01,500 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 07:52:22,496 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 07:53:09,952 INFO: LOGIN ATTEMPT: User 'rahmatzkk10@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 07:53:10,229 INFO: LOGIN SUCCESS: User '235520110156' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 07:57:27,163 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:00:17,377 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:05:05,069 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:07:29,203 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:08:21,740 INFO: Report File Upload Success: /uploads/proofs/235520110156_report__7 [in D:\pakmunar\SmartEvalUᴍᴜ\mahasiswa\routes.py:58]
+2025-11-21 08:10:25,612 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 08:10:25,887 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 08:11:46,550 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:17:12,360 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:18:07,482 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:63]
+2025-11-21 08:21:13,026 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:21:28,252 ERROR: Exception on /admin/statistics [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 365, in statistics_dashboard
+    graph_trend = json.dumps(fig_trend, cls=plotly.utils.PlotlyJSONEncoder)
+NameError: name 'plotly' is not defined
+2025-11-21 08:21:42,565 INFO: ACCOUNT CREATED: User 8798798989. Password: e7JV9M1kaS [in D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py:104]
+2025-11-21 08:22:27,923 INFO: LOGIN ATTEMPT: User '8798798989' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 08:22:28,201 INFO: LOGIN SUCCESS: User '8798798989' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 08:23:05,698 INFO: Report File Upload Success: /uploads/proofs/8798798989_report_ [in D:\pakmunar\SmartEvalUᴍᴜ\mahasiswa\routes.py:58]
+2025-11-21 08:24:28,505 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 08:24:28,778 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 08:24:39,480 ERROR: Exception on /admin/report/6 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 193, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:24:44,518 ERROR: Exception on /admin/report/6 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 193, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:25:19,389 ERROR: Exception on /admin/report/6 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 33, in decorated_function
+    if current_user.role not in allowed_roles:
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 193, in report_detail
+    def add_comment(report_id):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:25:33,454 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:25:38,213 ERROR: Exception on /admin/report/5 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 185, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:25:41,971 ERROR: Exception on /admin/report/2 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 185, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:26:05,913 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:26:09,590 ERROR: Exception on /admin/report/4 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 185, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:26:54,217 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:27:09,115 ERROR: Exception on /admin/report/6 [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 185, in report_detail
+    return render_template('admin/report_detail.html',
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 1, in top-level template code
+    {% extends "admin/admin_base.html" %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\admin_base.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\pakmunar\SmartEvalUᴍᴜ\templates\admin\report_detail.html", line 25, in block 'content'
+    <span class="font-medium">{{ report.pelapor.nama_lengkap }} ({{ report.pelapor.nim }})</span>
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'models.report.Report object' has no attribute 'pelapor'
+2025-11-21 08:28:19,386 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:32:07,946 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:33:46,255 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:37:15,869 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:38:10,250 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:38:50,196 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:39:51,363 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:42:47,683 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:44:04,338 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:45:09,214 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:45:38,711 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:46:30,770 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:48:02,573 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:54:37,258 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:54:46,440 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:56:33,292 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:57:38,917 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 08:58:14,573 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 09:00:14,547 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 09:00:24,899 ERROR: Exception on /admin/statistics [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 315, in statistics_dashboard
+    pending_count = Reports.query.filter_by(status='Pending').count()
+NameError: name 'Reports' is not defined
+2025-11-21 09:00:40,027 ERROR: Exception on /admin/statistics [GET] [in D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py:875]
+Traceback (most recent call last):
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "D:\pakmunar\SmartEvalUᴍᴜ\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 36, in decorated_function
+    return f(*args, **kwargs)
+  File "D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py", line 315, in statistics_dashboard
+    pending_count = Reports.query.filter_by(status='Pending').count()
+NameError: name 'Reports' is not defined
+2025-11-21 09:01:09,222 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 09:02:14,180 INFO: LOGIN ATTEMPT: User 'rahmatzkk10@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 09:02:14,473 INFO: LOGIN SUCCESS: User '235520110156' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 09:07:18,737 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 09:07:19,015 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:01:02,805 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:07:59,254 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:15:07,109 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:17:07,436 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:17:51,918 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:18:44,807 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:19:58,190 INFO: SmartEval Startup [in D:\pakmunar\SmartEvalUᴍᴜ\app.py:62]
+2025-11-21 19:20:39,071 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:20:39,304 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:21:12,688 INFO: LOGIN ATTEMPT: User 'rahmatzkk10@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:21:12,915 INFO: LOGIN SUCCESS: User '235520110156' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:22:16,828 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:22:17,062 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:22:55,972 INFO: LOGIN ATTEMPT: User 'helloworld@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:22:56,200 INFO: LOGIN SUCCESS: User '235544667733' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:25:04,419 INFO: Report File Upload Success: /uploads/proofs/235544667733_report_ [in D:\pakmunar\SmartEvalUᴍᴜ\mahasiswa\routes.py:58]
+2025-11-21 19:26:04,992 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:26:05,224 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:26:47,964 INFO: REPORT COMMENT: User admin_smart commented on report 7. [in D:\pakmunar\SmartEvalUᴍᴜ\admin\routes.py:216]
+2025-11-21 19:27:07,432 INFO: LOGIN ATTEMPT: User 'helloworld@gmail.com' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:27:07,662 INFO: LOGIN SUCCESS: User '235544667733' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]
+2025-11-21 19:28:23,144 INFO: LOGIN ATTEMPT: User 'admin_smart' found. Checking password hash... [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:58]
+2025-11-21 19:28:23,375 INFO: LOGIN SUCCESS: User 'admin_smart' logged in. [in D:\pakmunar\SmartEvalUᴍᴜ\main\routes.py:62]

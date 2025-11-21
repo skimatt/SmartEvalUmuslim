@@ -1,0 +1,127 @@
+{% extends "mahasiswa/base.html" %}
+{% block content %}
+<div class="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
+    <h1 class="text-3xl font-bold font-heading text-gray-800 mb-2">Selamat Datang, {{ current_user.nama_lengkap }}!</h1>
+    <p class="text-lg text-gray-500 mb-6 border-b pb-4">NIM: <span class="font-bold text-primary-dark">{{ current_user.nim }}</span> | Program Studi: {{ current_user.prodi }}</p>
+
+    <!-- Navigasi Cepat -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        
+        <!-- Kartu 1: Buat Laporan -->
+        <a href="{{ url_for('mahasiswa.create_report') }}" class="bg-primary hover:bg-primary-dark text-white p-6 rounded-2xl shadow-xl transition duration-300 transform hover:scale-[1.02] flex items-center space-x-4" style="background-color: #009879;">
+            <i data-lucide="send" class="w-8 h-8 flex-shrink-0"></i>
+            <div>
+                <span class="text-xl font-semibold font-heading">Laporkan Sesuatu</span>
+                <p class="text-sm mt-1 opacity-90">Laporkan masalah fasilitas atau layanan kampus.</p>
+            </div>
+        </a>
+        
+        <!-- Kartu 2: Beri Penilaian -->
+        <a href="{{ url_for('mahasiswa.rate_lecturers') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white p-6 rounded-2xl shadow-xl transition duration-300 transform hover:scale-[1.02] flex items-center space-x-4">
+            <i data-lucide="star" class="w-8 h-8 flex-shrink-0"></i>
+            <div>
+                <span class="text-xl font-semibold font-heading">Beri Penilaian Dosen</span>
+                <p class="text-sm mt-1 opacity-90">Partisipasi dalam evaluasi akademik Anda.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Tampilan Status Agregat Laporan -->
+    <h2 class="text-2xl font-bold font-heading text-gray-800 mb-4">Ringkasan Laporan Aktif</h2>
+    
+    {% set total_reports = reports | length %}
+    {% set pending_count = reports | selectattr('status', 'equalto', 'Pending') | list | length %}
+    {% set processed_count = reports | selectattr('status', 'equalto', 'Diproses') | list | length %}
+    {% set completed_count = reports | selectattr('status', 'equalto', 'Selesai') | list | length %}
+
+    <div class="grid grid-cols-4 gap-4 mb-8">
+        <div class="text-center p-4 rounded-xl bg-gray-50 border-b-2 border-gray-300">
+            <i data-lucide="folder-open" class="w-6 h-6 mx-auto text-gray-600 mb-1"></i>
+            <p class="text-2xl font-bold">{{ total_reports }}</p>
+            <p class="text-sm text-gray-500">TOTAL</p>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-yellow-50 border-b-2 border-yellow-500">
+            <i data-lucide="clock" class="w-6 h-6 mx-auto text-yellow-600 mb-1"></i>
+            <p class="text-2xl font-bold">{{ pending_count }}</p>
+            <p class="text-sm text-gray-500">PENDING</p>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-blue-50 border-b-2 border-blue-500">
+            <i data-lucide="loader" class="w-6 h-6 mx-auto text-blue-600 mb-1"></i>
+            <p class="text-2xl font-bold">{{ processed_count }}</p>
+            <p class="text-sm text-gray-500">DIPROSES</p>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-primary/10 border-b-2 border-primary-dark" style="border-color: #0F8A5F;">
+            <i data-lucide="check-circle" class="w-6 h-6 mx-auto text-primary-dark mb-1" style="color: #0F8A5F;"></i>
+            <p class="text-2xl font-bold">{{ completed_count }}</p>
+            <p class="text-sm text-gray-500">SELESAI</p>
+        </div>
+    </div>
+
+
+    <!-- Tabel Laporan Terstruktur (Menggantikan List Panjang) -->
+    <h2 class="text-2xl font-bold font-heading text-gray-800 mb-4 border-t pt-4">Riwayat Laporan Detail</h2>
+    
+    {% if reports %}
+    <div class="overflow-x-auto bg-gray-50 rounded-xl shadow-inner border">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Judul & Kategori</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for report in reports %}
+                <tr>
+                    <td class="px-6 py-3 text-sm font-medium text-gray-900 max-w-xs truncate">
+                        {{ report.judul }}<br>
+                        <span class="text-xs text-gray-500">{{ report.kategori }}</span>
+                    </td>
+                    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                        {{ report.created_at.strftime('%d %b %Y') }}
+                    </td>
+                    <td class="px-6 py-3 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                            {% if report.status == 'Pending' %} bg-yellow-100 text-yellow-800 
+                            {% elif report.status == 'Diproses' %} bg-blue-100 text-blue-800 
+                            {% elif report.status == 'Selesai' %} bg-primary/20 text-primary-dark {% endif %}">
+                            {{ report.status.upper() }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                        <a href="{{ url_for('mahasiswa.report_detail', report_id=report.id) }}" class="text-indigo-600 hover:text-indigo-800 transition duration-150 font-semibold flex items-center">
+                            Lihat Detail 
+                            <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Simulasi Pagination -->
+    <div class="mt-4 flex justify-end text-sm text-gray-600">
+        Menampilkan 1 - {{ reports | length }} dari {{ reports | length }} Laporan.
+        <!-- Dalam implementasi nyata, ini akan menjadi navigasi pagination -->
+    </div>
+
+    {% else %}
+    <div class="text-center py-10 border-4 border-dashed border-gray-200 rounded-2xl bg-gray-50">
+        <i data-lucide="file-text" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
+        <p class="text-xl text-gray-700 font-semibold">Anda belum memiliki laporan yang diajukan.</p>
+        <a href="{{ url_for('mahasiswa.create_report') }}" class="text-indigo-600 hover:text-indigo-700 mt-2 inline-block font-medium">Mulai buat laporan sekarang.</a>
+    </div>
+    {% endif %}
+</div>
+<script>
+    // Pastikan Lucide Icons di-render di halaman ini
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
+{% endblock content %}

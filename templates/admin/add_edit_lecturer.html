@@ -1,0 +1,51 @@
+{% extends "admin/admin_base.html" %}
+{% block content %}
+
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">
+        {% if lecturer %}Edit Data Dosen: {{ lecturer.nama }}{% else %}Tambah Dosen Baru{% endif %}
+    </h1>
+    
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        
+        <!-- Nama Lengkap Dosen -->
+        <div class="mb-4">
+            {{ form.nama.label(class_="block text-sm font-medium text-gray-700") }}
+            {{ form.nama(class_="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500", placeholder="Nama Lengkap") }}
+            {% for error in form.nama.errors %}
+                <span class="text-red-500 text-xs mt-1 block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- NIDN -->
+        <div class="mb-4">
+            {{ form.nidn.label(class_="block text-sm font-medium text-gray-700") }}
+            {{ form.nidn(class_="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500", placeholder="Nomor Induk Dosen Nasional") }}
+            {% for error in form.nidn.errors %}
+                <span class="text-red-500 text-xs mt-1 block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Fakultas -->
+        <div class="mb-6">
+            {{ form.fakultas.label(class_="block text-sm font-medium text-gray-700") }}
+            {{ form.fakultas(class_="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500") }}
+            {% for error in form.fakultas.errors %}
+                <span class="text-red-500 text-xs mt-1 block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            {{ form.submit(class_="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 cursor-pointer", value=title) }}
+        </div>
+        
+        {% if lecturer %}
+        <div class="mt-4 text-center">
+             <a href="{{ url_for('admin.manage_lecturers') }}" class="text-sm text-gray-600 hover:text-gray-800">Batal Edit</a>
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock content %}

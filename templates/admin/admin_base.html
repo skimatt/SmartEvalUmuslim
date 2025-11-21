@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | SmartEval Admin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk icon (tetap dipertahankan untuk backup) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Definisi Warna Utama UMU (Hijau) */
+        .color-primary { color: #009879; }
+        .bg-primary { background-color: #009879; }
+        .bg-primary-dark { background-color: #0F8A5F; }
+        .bg-soft-gray { background-color: #F5F7F8; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8fafc; 
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* TEMA ADMIN: PUTIH BERSIH (Professional Look) */
+        .sidebar-menu { 
+            background-color: #FFFFFF; /* PUTIH */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s; 
+        }
+        .sidebar-item-link { 
+            color: #334155; /* Abu gelap/Slate-600 */
+        }
+        .sidebar-item-link:hover {
+            color: #009879; /* Hijau UMU saat hover */
+        }
+        .sidebar-item:hover { 
+            background-color: #f0fdfa; /* Hijau Sangat Muda */
+        }
+        .active-link { 
+            background-color: #f0fdfa; /* Hijau Sangat Muda */
+            border-left: 4px solid #009879; /* Aksen Hijau */
+        }
+        .active-link .sidebar-item-link, .active-link .sidebar-item-link i {
+            color: #009879 !important; /* Teks dan ikon Hijau UMU */
+        }
+        /* Style untuk Flash Messages */
+        .alert-success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+        .alert-danger { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+        .alert-warning { background-color: #fff3cd; color: #664d03; border-color: #ffecb5; }
+    </style>
+</head>
+<body class="min-h-screen flex bg-gray-50">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Sidebar / Menu -->
+    <aside id="sidebar" class="w-64 sidebar-menu text-gray-800 flex-shrink-0 fixed h-full z-30 transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+        <!-- HEADER ADMIN SMART EVAL UMU -->
+<div class="p-5 border-b border-gray-200 bg-white flex items-center gap-4">
+
+    <!-- Logo Resmi UMUSLIM -->
+    <img src="{{ url_for('static', filename='assets/logo/Logo_Universitas_Almuslim.png') }}"
+         alt="Logo UMUSLIM"
+         class="w-10 h-10 rounded-full object-cover shadow">
+
+    <div>
+        <a href="{{ url_for('admin.dashboard') }}" 
+           class="text-2xl font-bold text-gray-800 tracking-wide">
+            SmartEval Umuslim
+        </a>
+
+        <span class="block text-xs text-gray-500 mt-0.5">
+            Administrator Panel
+        </span>
+    </div>
+</div>
+
+
+
+        <!-- Menu Inner -->
+        <ul class="py-4 space-y-1">
+            <li class="px-5 pt-3 pb-2 text-xs font-semibold uppercase text-gray-500">Dashboard & Verifikasi</li>
+            
+            <li class="sidebar-item {{ 'active-link' if request.endpoint == 'admin.dashboard' }}">
+                <a href="{{ url_for('admin.dashboard') }}" class="flex items-center p-3 text-sm sidebar-item-link">
+                    <i data-lucide="layout-dashboard" class="mr-3 w-5 h-5"></i>
+                    Ringkasan Utama
+                </a>
+            </li>
+            
+            <li class="sidebar-item {{ 'active-link' if request.endpoint == 'admin.verification_list' }}">
+                <a href="{{ url_for('admin.verification_list') }}" class="flex items-center p-3 text-sm sidebar-item-link">
+                    <i data-lucide="user-check" class="mr-3 w-5 h-5"></i>
+                    Verifikasi Pendaftar
+                </a>
+            </li>
+
+            <li class="px-5 pt-4 pb-2 text-xs font-semibold uppercase text-gray-500">Manajemen Laporan</li>
+            
+            <!-- Kelola Laporan Aktif -->
+            <li class="sidebar-item {{ 'active-link' if request.endpoint == 'admin.manage_reports' or request.endpoint == 'admin.report_detail' }}">
+                <a href="{{ url_for('admin.manage_reports') }}" class="flex items-center p-3 text-sm sidebar-item-link">
+                    <i data-lucide="file-text" class="mr-3 w-5 h-5"></i>
+                    Kelola Laporan Aktif
+                </a>
+            </li>
+
+            <li class="px-5 pt-4 pb-2 text-xs font-semibold uppercase text-gray-500">Evaluasi & Statistik</li>
+            
+            <!-- Dashboard Statistik -->
+            <li class="sidebar-item {{ 'active-link' if request.endpoint == 'admin.statistics_dashboard' }}">
+                <a href="{{ url_for('admin.statistics_dashboard') }}" class="flex items-center p-3 text-sm sidebar-item-link">
+                    <i data-lucide="bar-chart-3" class="mr-3 w-5 h-5"></i>
+                    Dashboard Statistik
+                </a>
+            </li>
+            <!-- Kelola Dosen -->
+            <li class="sidebar-item {{ 'active-link' if request.endpoint == 'admin.manage_lecturers' or request.endpoint == 'admin.add_edit_lecturer' }}">
+                <a href="{{ url_for('admin.manage_lecturers') }}" class="flex items-center p-3 text-sm sidebar-item-link">
+                    <i data-lucide="users-2" class="mr-3 w-5 h-5"></i>
+                    Kelola Dosen
+                </a>
+            </li>
+        </ul>
+        
+        <!-- Toggle button for mobile -->
+        <button id="sidebar-close" class="absolute top-4 right-4 text-gray-600 md:hidden p-1 rounded-full hover:bg-gray-100">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+    </aside>
+
+    <!-- Layout Container (Content) -->
+    <div id="layout-page" class="flex-grow md:ml-64 w-full transition-all duration-300">
+
+        <!-- Navbar (Tetap menggunakan Navbar Admin yang sudah ada) -->
+        <nav class="bg-white shadow p-4 sticky top-0 z-20">
+            <div class="flex justify-between items-center">
+                <!-- Mobile Toggle -->
+                <button id="sidebar-toggle" class="md:hidden text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+                
+                <!-- Breadcrumb/Title -->
+                <h4 class="text-lg font-semibold text-gray-800 hidden sm:block">{{ title }}</h4>
+
+                <!-- User Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center text-gray-700 hover:text-gray-900 transition duration-150">
+                        <img src="https://placehold.co/32x32/009879/ffffff?text=A" alt="Avatar" class="rounded-full mr-2">
+                        <span class="text-sm font-medium hidden sm:inline">{{ current_user.nama_lengkap }}</span>
+                        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl overflow-hidden hidden group-hover:block z-40">
+                        <div class="p-3 border-b">
+                            <p class="font-semibold text-gray-900">{{ current_user.nama_lengkap }}</p>
+                            <p class="text-xs text-gray-500">{{ current_user.role.capitalize() }}</p>
+                        </div>
+                        <!-- Link ke Profil -->
+                        <a href="{{ url_for('main.profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-user-circle mr-3"></i> Profil Saya
+                        </a>
+                        <!-- Link Logout -->
+                        <a href="{{ url_for('main.logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt mr-3"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Flash Messages (di dalam layout page) -->
+        <div class="max-w-full mx-auto mt-4 px-4">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert-{{ category }} p-3 rounded-lg shadow mb-3" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        
+        <!-- Content -->
+        <div class="p-4 sm:p-6 lg:p-8">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 p-4 mt-auto">
+            <div class="text-center text-sm text-gray-600">
+                &copy; <span id="current-year">2025</span> SmartEval Umu.
+            </div>
+        </footer>
+
+    </div>
+    
+    <script>
+        // Set tahun saat ini
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Logic Sidebar Toggle (untuk mobile)
+        const sidebar = document.getElementById('sidebar');
+        const layoutPage = document.getElementById('layout-page');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            // Menambah atau menghapus margin pada layoutPage saat sidebar terbuka di desktop
+            if (window.innerWidth >= 768) {
+                if (sidebar.classList.contains('-translate-x-full')) {
+                    layoutPage.classList.remove('md:ml-64');
+                } else {
+                    layoutPage.classList.add('md:ml-64');
+                }
+            }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        sidebarClose.addEventListener('click', toggleSidebar);
+
+        // Memastikan sidebar tetap terbuka di desktop saat dimuat
+        if (window.innerWidth >= 768) {
+             sidebar.classList.remove('-translate-x-full');
+             layoutPage.classList.add('md:ml-64');
+        }
+        
+        // Panggil Lucide Icons saat DOM siap
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
